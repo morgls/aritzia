@@ -1,6 +1,6 @@
 {#
 This model represents the time standards for packing operations
-The assumption made here is thateach of these actions occurs once, for each order that is packed
+The assumption made here is that each of these actions occurs once, for each order that is packed
 #}
 
 with
