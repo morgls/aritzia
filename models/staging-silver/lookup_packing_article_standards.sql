@@ -1,7 +1,13 @@
+{#
+This model represents the time standards for packing specific articles
+The assumption made here is thateach of these actions occurs once, per article, when packing
+#}
+
 with
     article_dept as (
         select distinct
             department,
+            material as article,
             -- convert to lowercase and remove any non-word characters
             regexp_replace(lower(department), '[^a-z]', '') as operation
         from {{ ref("dim_articles") }}
@@ -21,7 +27,7 @@ with
         select replace(raw_ts.operation, '_standard', '') as operation, time_standard
         from raw_ts
     )
-select department, time_standard
+select department, article, time_standard
 from article_dept
 left join
     t_dept
